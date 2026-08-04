@@ -92,10 +92,11 @@ async function capture() {
 
   const pageData = await collectPageData(tab.id);
   const detectedLanguage = await detectLanguage(tab.id);
+  const currentTabUrl = tab.url || tab.pendingUrl || pageData.value?.page?.value?.url || null;
   const originalTitle = pageData.value?.page?.value?.title || tab.title || "Untitled Page";
   const sanitizedTitle = sanitizePageName(originalTitle);
   const titleFragment = createPageNameFragment(sanitizedTitle);
-  const domainFragment = compactDomain(tab.url || pageData.value?.page?.value?.url || "");
+  const domainFragment = compactDomain(currentTabUrl || "");
   const basename = `${safeTimestamp}-${titleFragment}-${domainFragment}-${uniqueId}`;
   const relativeDirectory = `url_snapshots/${directoryTimestamp}`;
   const imageFilename = `${basename}.png`;
@@ -114,6 +115,7 @@ async function capture() {
     schema: "url-viewport-snapshot/v1",
     snapshot_id: `uvs1-${safeTimestamp}-${uniqueId}`,
     captured_at: capturedAtIso,
+    source_url: currentTabUrl,
     capture_method: "chromium-extension-visible-viewport",
     portability_mode: "downloads-directory-relative",
     output: {
@@ -149,7 +151,7 @@ async function capture() {
         window_id: tab.windowId,
         index: tab.index,
         title: tab.title || null,
-        url: tab.url || null,
+        url: currentTabUrl,
         pending_url: tab.pendingUrl || null,
         favicon_url: tab.favIconUrl || null,
         status: tab.status || null,
