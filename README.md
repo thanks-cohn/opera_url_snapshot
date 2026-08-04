@@ -1,12 +1,58 @@
 # Opera URL Snapshot
 
-A portable, one-click browser archaeology tool.
+**A portable, one-click browser archaeology tool.**
+
+## **Install first — Opera**
+
+**Nothing needs to be built, installed, compiled, or made executable. No `chmod` is required.**
+
+Clone with SSH:
+
+```bash
+cd ~/dev
+git clone git@github.com:thanks-cohn/opera_url_snapshot.git
+cd opera_url_snapshot
+realpath extension
+```
+
+Then:
+
+1. Open **`opera://extensions`** in Opera.
+2. Turn on **Developer mode**.
+3. Click **Load unpacked**.
+4. Select the `extension` directory printed by `realpath extension`.
+5. Pin **URL Snapshot** to the toolbar.
+6. Open a normal webpage and click the extension icon.
+
+Captures are saved beneath Opera's configured Downloads directory:
+
+```text
+<Downloads>/url_snapshots/<timestamp>/
+```
+
+For a typical Linux setup, that is:
+
+```text
+~/Downloads/url_snapshots/<timestamp>/
+```
+
+To inspect recent captures:
+
+```bash
+find ~/Downloads/url_snapshots -type f | sort | tail -n 10
+```
+
+> **Font note:** GitHub controls README fonts and colors, so a repository cannot reliably force JetBrains Mono or Roboto Mono. All commands are placed in fenced code blocks so GitHub displays them in a clear monospace programming font. Users who configure JetBrains Mono or Roboto Mono as their browser monospace font will see that font here.
+
+---
+
+## What this is
 
 Opera URL Snapshot records **what was already present at the moment of capture**. It takes a PNG screenshot of the visible viewport and creates a matching JSON file containing the page title, URL, metadata, viewport state, document structure, performance entries, media information, and other data already exposed by the browser.
 
 It is **not a web crawler**. It does not follow links, reload pages, scroll automatically, fetch resources, run OCR, summarize content, or attempt to reconstruct an entire site.
 
-Think of it as archaeology rather than crawling: one observed page, one moment, one visual artifact, and one provenance record.
+Think of it as archaeology rather than crawling: **one observed page, one moment, one visual artifact, and one provenance record.**
 
 ## What one click creates
 
@@ -27,15 +73,13 @@ The filename uses:
 TIMESTAMP + FIRST 10 TITLE CHARACTERS + LAST 5 TITLE CHARACTERS + DOMAIN + UNIQUE ID
 ```
 
-The full, unshortened page title is preserved inside the JSON.
-
-For titles of 15 characters or fewer, the title is used once without overlapping fragments.
+The full, unshortened page title is preserved inside the JSON. For titles of 15 characters or fewer, the title is used once without overlapping fragments.
 
 ## Portable by default
 
 No compiler, package manager, server, account, or API key is required.
 
-The extension can be loaded directly from the `extension/` directory in Opera and other Chromium-based browsers.
+The extension can be loaded directly from the `extension/` directory in Opera, Chrome, Chromium, Brave, Vivaldi, and Edge.
 
 The portable version saves beneath the browser's configured Downloads directory:
 
@@ -63,19 +107,7 @@ The intended cross-platform behavior is:
 
 Until the helper is installed, the zero-install extension remains fully usable and stores captures under the browser Downloads directory.
 
-## Install in Opera
-
-1. Download or clone this repository.
-2. Open `opera://extensions`.
-3. Enable **Developer mode**.
-4. Choose **Load unpacked**.
-5. Select the `extension` directory.
-6. Pin **URL Snapshot** to the toolbar.
-7. Open a normal webpage and click the extension icon.
-
-No build step is required.
-
-## Install in Chrome, Chromium, Brave, Vivaldi, or Edge
+## Install in other Chromium browsers
 
 Open the browser's extensions page, enable Developer mode, choose **Load unpacked**, and select the `extension` directory.
 
@@ -141,7 +173,7 @@ The extension does not:
 - collect passwords, form values, payment information, clipboard contents, or authentication tokens;
 - save the complete DOM.
 
-Comprehensive observation does not mean collecting secrets.
+**Comprehensive observation does not mean collecting secrets.**
 
 ## Restricted pages
 
@@ -200,7 +232,7 @@ The screenshot records the visible viewport only. It does not include Opera's ad
 
 ## Current status
 
-The repository contains the portable extension implementation. The optional Native Messaging helper for arbitrary absolute output directories is a separate portability layer and should remain optional so the basic tool stays immediately usable.
+The repository contains the portable extension implementation. The optional Native Messaging helper for arbitrary absolute output directories is a separate portability layer and remains optional so the basic tool stays immediately usable.
 
 ## License
 
