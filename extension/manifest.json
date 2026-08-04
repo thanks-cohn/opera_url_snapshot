@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "URL Snapshot",
+  "version": "0.1.0",
+  "description": "Capture the visible viewport and a matching passive metadata record for browser archaeology.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Capture URL snapshot"
+  },
+  "icons": {}
+}
