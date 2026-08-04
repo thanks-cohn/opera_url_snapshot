@@ -42,7 +42,6 @@ To inspect recent captures:
 find ~/Downloads/url_snapshots -type f | sort | tail -n 10
 ```
 
-> **Font note:** GitHub controls README fonts and colors, so a repository cannot reliably force JetBrains Mono or Roboto Mono. All commands are placed in fenced code blocks so GitHub displays them in a clear monospace programming font. Users who configure JetBrains Mono or Roboto Mono as their browser monospace font will see that font here.
 
 ---
 
